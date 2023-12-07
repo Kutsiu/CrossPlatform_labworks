@@ -1,0 +1,33 @@
+﻿@model Lab5.Models.Lab1DataModel
+
+@{
+    ViewData["Title"] = "Lab1";
+}
+
+<h2>Max Earnings Calculation</h2>
+
+<form method="post" asp-controller="Labs" asp-action="Lab1">
+    <div class="form-group">
+        <label for="pricesInput">Enter Prices per Day:</label>
+        <input type="text" class="form-control" id="pricesInput" asp-for="PricesInput" placeholder="Enter prices separated by spaces (e.g., 10 20 30)">
+        <small class="form-text text-muted">Enter the price for each day separated by spaces.</small>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Calculate</button>
+</form>
+
+@if (Model != null)
+{
+    @if (!string.IsNullOrEmpty(Model.ErrorValue))
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorValue
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Calculated))
+    {
+        <div class="alert alert-success">
+            <strong>Result:</strong> @Model.Calculated
+        </div>
+    }
+}
